@@ -45,7 +45,7 @@ struct DetailGameView: View {
                                             .resizable()
                                             .scaledToFit()
                                             .overlay(
-                                                RoundedRectangle(cornerRadius:10).stroke(Color("Secondary"),lineWidth: 6))
+                                                RoundedRectangle(cornerRadius:10).stroke(Color("SecondaryVariant"),lineWidth: 6))
                                             .cornerRadius(10)
                                             .frame(width: 240, height: 135)
                                             .padding(.horizontal, 5)

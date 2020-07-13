@@ -25,16 +25,20 @@ struct Games: Codable, Identifiable {
         formatter.setLocalizedDateFormatFromTemplate("MMM dd, yyyy")
         return formatter.string(from: date)
     }
-    let backgroundImage: String
-    let metacritic: Int
-    var genres: [Genres]
-
+    let backgroundImage: String?
+    let metacritic: Int?
+    var genres: [Genres]?
     var genre: String {
-        let joined = genres.map { String($0.name) }.joined(separator: ", ")
-        return joined
+        if let genres = genres {
+            return genres.map { String($0.name) }.joined(separator: ", ")
+        }
+        return "-"
     }
     
     var metacriticShape: Color {
+        guard let metacritic = metacritic else {
+            return Color.gray.opacity(0)
+        }
         switch metacritic {
             case 0..<20:
                 return Color.red

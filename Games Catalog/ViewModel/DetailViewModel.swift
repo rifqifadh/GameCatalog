@@ -26,7 +26,6 @@ class DetailViewModel: ObservableObject {
         if let id = game.id {
             RawgService.fetch(from: .detail(id: id), response: DetailGame.self) { [weak self](response) in
                 if let game = response {
-                    //                    DispatchQueue.global(qos: .userInitiated)
                     DispatchQueue.main.async {
                         self?.detailGames = game
                         self?.rating = Int(game.rating ?? 0)

@@ -20,14 +20,20 @@ struct GamesCatalogApp: App {
                         Image(systemName: "gamecontroller")
                         Text("Games")
                     }.tag(0)
-                    .onAppear(perform: setupAppearance)
                 
                 SearchGameView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("Search")
                     }.tag(1)
+                
+                About()
+                    .tabItem {
+                        Image(systemName: "info.circle")
+                        Text("About")
+                    }
             }
+            .onAppear(perform: setupAppearance)
         }
     }
     
@@ -51,10 +57,10 @@ struct GamesCatalogApp: App {
         UITableViewCell.appearance().backgroundColor = UIColor(named: "Primary")
         
         UIScrollView.appearance().backgroundColor = UIColor(named: "Primary")
-        
-//        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "TabLabel")
-//        UITabBar.appearance().barTintColor = UIColor(named: "ACTabBarTint")
-//        UITabBar.appearance().backgroundColor = UIColor(named: "ACTabBarTint")
+
+        UITabBar.appearance().isTranslucent = true
+        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "Text")
+        UITabBar.appearance().barTintColor = UIColor(named: "SecondaryVariant")
         
     }
 }

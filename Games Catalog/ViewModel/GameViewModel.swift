@@ -15,7 +15,7 @@ class GameViewModel: ObservableObject {
     
     init() {
         loading = true
-        RawgService.fetch(from: .games,params: ["ordering": "popularity"]  ,response: GamesResponse.self) {[weak self] (response) in
+        RawgService.fetch(from: .games,params: ["ordering": "popular"]  ,response: GamesResponse.self) {[weak self] (response) in
             if let results = response?.results {
                 DispatchQueue.main.async {
                     self?.games = results

@@ -39,13 +39,15 @@ struct DetailGame: Codable {
                 return Color.gray.opacity(0)
         }
     }
-    var genres: [Genres]
+    var genres: [Genres]?
     var genre: String {
-        let joined = genres.map { String($0.name) }.joined(separator: ", ")
-        return joined
+        if let genres = genres {
+            return genres.map { String($0.name) }.joined(separator: ", ")
+        }
+        return "-"
     }
     let platforms: [Platforms]?
-
+    
     var platform: String {
         if let platforms = platforms {
             return platforms.map { String($0.platform.name) }.joined(separator: ",")

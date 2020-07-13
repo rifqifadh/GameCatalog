@@ -33,11 +33,10 @@ class RawgService {
     
     static private func makeUrl(endpoint: Endpoint, params: [String: String]? = nil) -> URL {
         var component = URLComponents(url: Constants.baseUrl.appendingPathComponent(endpoint.path()), resolvingAgainstBaseURL: false)!
-        var queryItems = [URLQueryItem(name: "", value: "")]
         if let params = params {
-            queryItems.append(contentsOf: params.map { URLQueryItem(name: $0.key, value: $0.value) })
+            let queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value )}
+            component.queryItems = queryItems
         }
-        component.queryItems = queryItems
         return component.url!
     }
     

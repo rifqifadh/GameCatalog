@@ -80,6 +80,7 @@ extension DetailContentView {
                         .font(.headline)
                         .padding(.bottom, 5)
                     Text("\(game.developer)")
+                        .frame(minWidth: 100, maxWidth: 200)
                 }
                 Spacer()
                 Spacer()
