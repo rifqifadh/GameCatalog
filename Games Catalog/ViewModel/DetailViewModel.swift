@@ -13,16 +13,18 @@ class DetailViewModel: ObservableObject {
     @Published var detailGames: DetailGame?
     @Published var screenshots: [Screenshot] = []
     @Published var loading: Bool = false
-    @Published var loadingScreenshot: Bool = false
     @Published var rating: Int = 0
     
     init(game: Games) {
         self.game = game
     }
     
+    deinit {
+        self.detailGames = nil
+    }
+    
     func getDetailMovie() {
         loading = true
-        loadingScreenshot = true
         if let id = game.id {
             RawgService.fetch(from: .detail(id: id), response: DetailGame.self) { [weak self](response) in
                 if let game = response {
@@ -43,6 +45,5 @@ class DetailViewModel: ObservableObject {
             self.detailGames = nil
         }
         loading = false
-        loadingScreenshot = false
     }
 }

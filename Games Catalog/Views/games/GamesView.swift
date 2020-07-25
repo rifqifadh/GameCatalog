@@ -19,12 +19,8 @@ struct GamesView: View {
         VStack {
             if viewModel.loading {
                 VStack() {
-                    ProgressView(String("Loading..."))
-                        .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                        .foregroundColor(.blue)
+                    ProgressViewCustom()
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                .background(Color("Primary"))
             } else {
                 NavigationView {
                     List {
@@ -36,13 +32,12 @@ struct GamesView: View {
                                     EmptyView()
                                 }
                                 .buttonStyle(PlainButtonStyle())
-                                .foregroundColor(Color("PrimaryVariant"))
-                                .preferredColorScheme(.dark)
                             }
                         }
-                        .listRowBackground(Color("Primary"))
+                        .listRowBackground(Color("Background"))
+                        .padding(.vertical, 10)
                     }
-                    .navigationBarTitle(Text("Games"))
+                    .navigationBarTitle(Text("Games Catalogue"))
                 }
             }
         }

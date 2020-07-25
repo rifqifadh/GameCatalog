@@ -19,11 +19,19 @@ struct DetailContentView: View {
             Text("\(game.name)")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-            Divider()
+            HStack(alignment: .center) {
+                Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+                Text("\(String(format: "%.1f", game.rating ?? 0))/5")
+                    .font(.footnote)
+                    .fontWeight(.light)
+                    .foregroundColor(.yellow)
+            }
+                .padding(.bottom, 20)
             Text("Description")
                 .font(.headline)
                 .fontWeight(.semibold)
-                .padding(.bottom, 10)
+                .padding(.bottom, 5)
             description
             Divider()
             detailGame
@@ -36,60 +44,59 @@ extension DetailContentView {
         VStack {
             if moreDesc {
                 Text("\(game.descriptionRaw ?? "")")
+                    .font(.body)
             } else {
-                HStack(alignment: .lastTextBaseline) {
-                    Text("\(game.descriptionRaw ?? "")")
-                        .lineLimit(3)
-                        .font(.body)
-                        .padding(.trailing)
-                        .overlay(
-                            Button(action: {
-                                self.moreDesc.toggle()
-                            }, label: {
-                                Text("more")
-                            })
-                            .padding(.horizontal)
-                            .background(Color("Primary").opacity(0.8)),
-                            alignment: .bottomTrailing
-                        )
-                }
+                Button(action: {
+                    self.moreDesc.toggle()
+                }, label: {
+                    VStack(alignment: .leading) {
+                        Text("\(game.descriptionRaw ?? "")")
+                            .font(.body)
+                            .lineLimit(4)
+                            .foregroundColor(Color("Text"))
+                        Text("Read more")
+                    }
+                })
             }
         }
     }
     
     private var detailGame: some View {
         VStack(alignment: .leading) {
+            Text("Genre")
+                .font(.headline)
+                .padding(.bottom, 5)
+            Text("\(game.genre)")
+            Divider()
             Text("Platform")
                 .font(.headline)
                 .padding(.bottom, 5)
             Text("\(game.platform)")
-                .padding(.bottom)
+                .lineLimit(2)
+            Divider()
             Text("Publisher")
                 .font(.headline)
                 .padding(.bottom, 5)
             Text("\(game.publisher)")
-                .padding(.bottom)
+            Divider()
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
-                    Text("Genre")
-                        .font(.headline)
-                        .padding(.bottom, 5)
-                    Text("\(game.genre)")
-                        .padding(.bottom)
                     Text("Developer")
                         .font(.headline)
                         .padding(.bottom, 5)
                     Text("\(game.developer)")
-                        .frame(minWidth: 100, maxWidth: 200)
-                }
-                Spacer()
-                Spacer()
-                VStack(alignment: .leading) {
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(2)
+                        .padding(.bottom)
                     Text("Metacritic")
                         .font(.headline)
                         .padding(.bottom, 5)
                     ScoreBox(color: game.metacriticShape, score: String("\(game.metacritic)"))
                         .padding(.bottom)
+                }
+                Spacer()
+                Spacer()
+                VStack(alignment: .leading) {
                     Text("Release Date")
                         .font(.headline)
                         .padding(.bottom, 5)

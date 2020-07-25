@@ -14,35 +14,40 @@ struct GamesRow: View {
     
     var body: some View {
         VStack() {
-            VStack(alignment: .leading) {
+            ZStack(alignment: .bottomLeading) {
                 WebImage(url: URL(string: games.backgroundImage!))
                     .resizable()
                     .renderingMode(.original)
-                    .background(Color.gray.opacity(0.5))
-                    .frame(height: 200)
-                HStack {
-                    Text("Release Date: \(games.releaseDate ?? "Error")")
-                        .font(.caption2)
-                        .foregroundColor(Color("Text"))
-                    Spacer()
-                    if let metacritic = games.metacritic {
-                        ScoreBox(color: games.metacriticShape, score: String("\(metacritic)"))
-                            .frame(alignment: .topLeading)
+                    .placeholder {
+                        Rectangle().foregroundColor(.gray)}
+                    .indicator(.activity)
+                    .frame(height: 240)
+                ZStack {
+                    BlurView(style: .light)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 70)
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading) {
+                            Text("\(games.name)!")
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .lineLimit(1)
+                                .foregroundColor(Color("Background"))
+                            Text("\(games.genre)")
+                                .font(.caption2)
+                                .foregroundColor(Color("Background"))
+                        }
+                        Spacer()
+                        if let metacritic = games.metacritic {
+                            ScoreBox(color: games.metacriticShape, score: String("\(metacritic)"))
+                                .frame(alignment: .topLeading)
+                        }
                     }
+                    .padding(10.0)
+                    .frame(minWidth: 0,
+                           maxWidth: .infinity,
+                           alignment: .leading)
                 }
-                .padding([.top, .leading, .trailing], 10.0)
-                VStack(alignment: .leading) {
-                    Text("\(games.name)!")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("Text"))
-                    Text("\(games.genre)")
-                        .font(.caption2)
-                        .foregroundColor(Color("Text"))
-                }
-                .padding([.bottom, .leading, .trailing], 10.0)
             }
-            .background(Color("PrimaryVariant"))
         }
     }
 }

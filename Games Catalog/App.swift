@@ -39,28 +39,28 @@ struct GamesCatalogApp: App {
     
     private func setupAppearance() {
         
-        UINavigationBar.appearance().largeTitleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Text")!
-        ]
+//        UINavigationBar.appearance().largeTitleTextAttributes = [
+//            NSAttributedString.Key.foregroundColor: UIColor(named: "Text")!
+//        ]
+//        
+//        UINavigationBar.appearance().titleTextAttributes = [
+//            NSAttributedString.Key.foregroundColor: UIColor(named: "Text")!
+//        ]
         
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: "Text")!
-        ]
-        
-        UINavigationBar.appearance().isTranslucent = true
-
-        UINavigationBar.appearance().barTintColor = UIColor(named: "Primary")
-        UINavigationBar.appearance().backgroundColor = UIColor(named: "Primary")
-        UINavigationBar.appearance().tintColor = UIColor(named: "Text")
-
-        UITableView.appearance().backgroundColor = UIColor(named: "Primary")
-        UITableViewCell.appearance().backgroundColor = UIColor(named: "Primary")
-        
-        UIScrollView.appearance().backgroundColor = UIColor(named: "Primary")
-
-        UITabBar.appearance().isTranslucent = true
-        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "Text")
-        UITabBar.appearance().barTintColor = UIColor(named: "SecondaryVariant")
+//        UINavigationBar.appearance().isTranslucent = true
+//
+        UINavigationBar.appearance().barTintColor = UIColor(named: "Background")
+        UINavigationBar.appearance().backgroundColor = UIColor(named: "Background")
+//        UINavigationBar.appearance().tintColor = UIColor(named: "Text")
+//
+        UITableView.appearance().backgroundColor = UIColor(named: "Background")
+        UITableViewCell.appearance().backgroundColor = UIColor(named: "Background")
+//
+        UIScrollView.appearance().backgroundColor = UIColor(named: "Background")
+//
+//        UITabBar.appearance().isTranslucent = true
+//        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "Text")
+//        UITabBar.appearance().barTintColor = UIColor(named: "SecondaryVariant")
         
     }
 }

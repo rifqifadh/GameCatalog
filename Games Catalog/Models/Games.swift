@@ -16,15 +16,6 @@ struct Games: Codable, Identifiable {
     var id: Int?
     let name: String
     let descriptionRaw: String?
-    let released: String?
-    var releaseDate: String? {
-        guard let released = released else { return nil }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-mm-dd"
-        let date = formatter.date(from: released)!
-        formatter.setLocalizedDateFormatFromTemplate("MMM dd, yyyy")
-        return formatter.string(from: date)
-    }
     let backgroundImage: String?
     let metacritic: Int?
     var genres: [Genres]?
@@ -65,7 +56,6 @@ struct Games: Codable, Identifiable {
 let static_games = Games(id: 3498,
                          name: "Grand Theft Auto V",
                          descriptionRaw: "Rockstar Games went bigger, since their previous installment of the series. You get the complicated and realistic world-building from Liberty City of GTA4 in the setting of lively and diverse Los Santos, from an old fan favorite GTA San Andreas. 561 different vehicles (including every transport you can operate) and the amount is rising with every update.",
-                         released: "2013-09-17",
                          backgroundImage: "https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg",
                          metacritic: 97,
                          genres: [static_genres])

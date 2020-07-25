@@ -24,16 +24,11 @@ struct DetailGameView: View {
             VStack {
                 if detailViewModel.detailGames != nil {
                     VStack(alignment: .leading) {
-                        ZStack(alignment: .bottomLeading) {
-                            WebImage(url: URL(string: detailViewModel.detailGames!.backgroundImage)!)
-                                .resizable()
-                                .background(Color(.black))
-                                .frame(height: 200)
-                            RatingView(rating: $detailViewModel.rating)
-                                .padding()
-                        }
+                        AVPlayerView()
+                            .frame(height: 200)
                         DetailContentView(game: detailViewModel.detailGames!)
                             .padding()
+                        Divider()
                         VStack(alignment: .leading) {
                             Text("Screenshots")
                                 .font(.headline)
@@ -43,29 +38,25 @@ struct DetailGameView: View {
                                     ForEach(detailViewModel.screenshots) { i in
                                         WebImage(url: URL(string: i.image))
                                             .resizable()
-                                            .scaledToFit()
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius:10).stroke(Color("SecondaryVariant"),lineWidth: 6))
+                                            .placeholder {
+                                                Rectangle().foregroundColor(.gray)}
+                                            .indicator(.activity)
                                             .cornerRadius(10)
+                                            .scaledToFill()
                                             .frame(width: 240, height: 135)
                                             .padding(.horizontal, 5)
                                     }
+                                    .padding(.bottom, 20)
                                     .edgesIgnoringSafeArea(.all)
                                 }
                             }
                         }
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                        .background(Color("Primary"))
+                        .frame(alignment: .center)
+                        .background(Color("Background"))
                         .navigationBarTitle(Text("\(detailViewModel.detailGames!.name)"), displayMode: .inline)
                     }
                 } else {
-                    VStack {
-                        ProgressView(String("Loading..."))
-                            .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                            .foregroundColor(.blue)
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                    .background(Color("Primary"))
+                    ProgressViewCustom()
                 }
             }
             .onAppear {
@@ -75,9 +66,3 @@ struct DetailGameView: View {
     }
 }
 
-
-//struct DetailView_Preview: PreviewProvider {
-//    static var previews: some View {
-//        DetailGameView(game: static_games)
-//    }
-//}

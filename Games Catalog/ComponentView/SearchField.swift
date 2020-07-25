@@ -20,7 +20,7 @@ struct SearchField: View {
             TextField(placeholder, text: $searchText)
                 .foregroundColor(Color("Text"))
                 .font(.headline)
-                .accentColor(Color("SecondaryVariant"))
+//                .accentColor(Color("SecondaryVariant"))
                 .textCase(nil)
             if !searchText.isEmpty {
                 Button(action: {
@@ -34,10 +34,10 @@ struct SearchField: View {
             }
         }
         .padding(8)
-        .background(Color("SecondaryVariant"))
+//        .background(Color("SecondaryVariant"))
         .mask(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .padding(2)
-        .listRowBackground(Color("Primary"))
+//        .listRowBackground(Color("Primary"))
     }
     
 }

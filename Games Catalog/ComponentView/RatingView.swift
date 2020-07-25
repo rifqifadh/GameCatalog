@@ -16,7 +16,6 @@ struct RatingView: View {
     
     var offImage: Image?
     var onImage = Image(systemName: "star.fill")
-    var onImageHalf = Image(systemName: "star.lefthalf.fill")
     
     var offColor = Color.gray
     var onColor = Color.yellow
