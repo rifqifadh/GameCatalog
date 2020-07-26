@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 import AVKit
 
 struct DetailGameView: View {
+    @Environment(\.managedObjectContext) var moc
     @StateObject private var detailViewModel: DetailViewModel
     
     var game: Games {
@@ -41,6 +42,23 @@ struct DetailGameView: View {
                         DetailContentView(game: detailViewModel.detailGames!)
                             .padding([.top, .leading, .trailing])
                         Divider()
+                        //                        Button(action: {
+                        //                            let fav = Favorite(context: self.moc)
+                        //                            fav.id = Int32(game.id ?? 0)
+                        //                            fav.name = game.name
+                        //                            fav.genre = game.genre
+                        //                            fav.backgroundImage = game.backgroundImage
+                        //
+                        //                            detailViewModel.saveToFavorite(self.moc)
+                        //
+                        //                            do {
+                        //                                try self.moc.save()
+                        //                            } catch {
+                        //                                fatalError("Error Save data")
+                        //                            }
+                        //                        }) {
+                        //                            Text("Add to Favorite")
+                        //                        }
                         VStack(alignment: .leading) {
                             Text("Screenshots")
                                 .font(.headline)
@@ -65,6 +83,14 @@ struct DetailGameView: View {
                         .padding(.bottom, 20)
                         .frame(alignment: .center)
                         .background(Color("Background"))
+                        .navigationBarItems(
+                            trailing:
+                                Button(action: {
+                                    detailViewModel.saveToFavorite(self.moc)
+                                }) {
+                                    Image(systemName: "star.fill")
+                                }
+                        )
                         .navigationBarTitle(Text("\(detailViewModel.detailGames!.name)"), displayMode: .inline)
                     }
                 } else {

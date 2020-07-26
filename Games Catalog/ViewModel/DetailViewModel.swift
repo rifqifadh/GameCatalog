@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import CoreData
 
 class DetailViewModel: ObservableObject {
     
     let game: Games
+//    let context = PersistentContainer.persistentContainer.viewContext
     @Published var detailGames: DetailGame?
     @Published var screenshots: [Screenshot] = []
     @Published var loading: Bool = false
@@ -45,5 +47,19 @@ class DetailViewModel: ObservableObject {
             self.detailGames = nil
         }
         loading = false
+    }
+    
+    func saveToFavorite(_ context: NSManagedObjectContext) {
+        let fav = Favorite(context: context)
+        fav.id = Int32(game.id ?? 0)
+        fav.name = game.name
+        fav.genre = game.genre
+        fav.backgroundImage = game.backgroundImage
+        
+        do {
+            try context.save()
+        } catch {
+            fatalError("Error Save data")
+        }
     }
 }

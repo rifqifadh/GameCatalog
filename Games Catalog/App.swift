@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct GamesCatalogApp: App {
+    let context = PersistentContainer.persistentContainer.viewContext
     @State var selectedView = 0
     
     @SceneBuilder
@@ -16,17 +17,22 @@ struct GamesCatalogApp: App {
         WindowGroup {
             TabView(selection: $selectedView) {
                 GamesView()
+                    .environment(\.managedObjectContext, context)
                     .tabItem {
                         Image(systemName: "gamecontroller")
                         Text("Games")
                     }.tag(0)
-                
+                FavoriteView()
+                    .environment(\.managedObjectContext, context)
+                    .tabItem {
+                        Image(systemName: "gamecontroller")
+                        Text("Games")
+                    }.tag(1)
                 SearchGameView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("Search")
-                    }.tag(1)
-                
+                    }.tag(2)
                 About()
                     .tabItem {
                         Image(systemName: "info.circle")
@@ -42,12 +48,12 @@ struct GamesCatalogApp: App {
 //        UINavigationBar.appearance().largeTitleTextAttributes = [
 //            NSAttributedString.Key.foregroundColor: UIColor(named: "Text")!
 //        ]
-//        
+//
 //        UINavigationBar.appearance().titleTextAttributes = [
 //            NSAttributedString.Key.foregroundColor: UIColor(named: "Text")!
 //        ]
         
-//        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().isTranslucent = true
 //
         UINavigationBar.appearance().barTintColor = UIColor(named: "Background")
         UINavigationBar.appearance().backgroundColor = UIColor(named: "Background")
@@ -58,9 +64,9 @@ struct GamesCatalogApp: App {
 //
         UIScrollView.appearance().backgroundColor = UIColor(named: "Background")
 //
-//        UITabBar.appearance().isTranslucent = true
+        UITabBar.appearance().isTranslucent = true
 //        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "Text")
-//        UITabBar.appearance().barTintColor = UIColor(named: "SecondaryVariant")
+//        UITabBar.appearance().barTintColor = UIColor(named: "BackgroundInactive")
         
     }
 }

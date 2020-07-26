@@ -29,6 +29,9 @@
 		991D4CA524B1A37100DF0D0C /* SearchGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D4CA424B1A37100DF0D0C /* SearchGameView.swift */; };
 		991D4CA724B225F300DF0D0C /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D4CA624B225F300DF0D0C /* SearchField.swift */; };
 		991D4CA924B231FB00DF0D0C /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D4CA824B231FB00DF0D0C /* SearchViewModel.swift */; };
+		995A7AAC24CDDB0E003CD025 /* PersistenceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A7AAB24CDDB0D003CD025 /* PersistenceContainer.swift */; };
+		995A7AAF24CDDB28003CD025 /* GameCatalog.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 995A7AAD24CDDB28003CD025 /* GameCatalog.xcdatamodeld */; };
+		995A7AB224CDE0B0003CD025 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A7AB124CDE0B0003CD025 /* FavoriteView.swift */; };
 		999CCDB824CC4FC8007B8F31 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999CCDB724CC4FC8007B8F31 /* SectionHeaderView.swift */; };
 		999CCDBA24CC5618007B8F31 /* ProgressViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999CCDB924CC5618007B8F31 /* ProgressViewCustom.swift */; };
 		999CCDC224CC7A1E007B8F31 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999CCDC124CC7A1E007B8F31 /* Clip.swift */; };
@@ -86,6 +89,9 @@
 		991D4CA424B1A37100DF0D0C /* SearchGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGameView.swift; sourceTree = "<group>"; };
 		991D4CA624B225F300DF0D0C /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		991D4CA824B231FB00DF0D0C /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		995A7AAB24CDDB0D003CD025 /* PersistenceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceContainer.swift; sourceTree = "<group>"; };
+		995A7AAE24CDDB28003CD025 /* GameCatalog.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameCatalog.xcdatamodel; sourceTree = "<group>"; };
+		995A7AB124CDE0B0003CD025 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		999CCDB724CC4FC8007B8F31 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		999CCDB924CC5618007B8F31 /* ProgressViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewCustom.swift; sourceTree = "<group>"; };
 		999CCDC124CC7A1E007B8F31 /* Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clip.swift; sourceTree = "<group>"; };
@@ -191,6 +197,7 @@
 		9908EABD24ACDDC7000BA65A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				995A7AB024CDE092003CD025 /* favorite */,
 				991D4CA324B1A36000DF0D0C /* search */,
 				99C22B5924AF2F8400BE0959 /* detail */,
 				9908EAC024ACDDE4000BA65A /* games */,
@@ -202,7 +209,8 @@
 		9908EABE24ACDDD0000BA65A /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				9908EAC424ACDEB9000BA65A /* RawgService.swift */,
+				995A7AAA24CDD8D2003CD025 /* Remote */,
+				995A7AA924CDD8CB003CD025 /* Local */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -263,6 +271,31 @@
 				991D4CA424B1A37100DF0D0C /* SearchGameView.swift */,
 			);
 			path = search;
+			sourceTree = "<group>";
+		};
+		995A7AA924CDD8CB003CD025 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				995A7AAD24CDDB28003CD025 /* GameCatalog.xcdatamodeld */,
+				995A7AAB24CDDB0D003CD025 /* PersistenceContainer.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		995A7AAA24CDD8D2003CD025 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				9908EAC424ACDEB9000BA65A /* RawgService.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		995A7AB024CDE092003CD025 /* favorite */ = {
+			isa = PBXGroup;
+			children = (
+				995A7AB124CDE0B0003CD025 /* FavoriteView.swift */,
+			);
+			path = favorite;
 			sourceTree = "<group>";
 		};
 		99C22B5024AE2C6C00BE0959 /* ComponentView */ = {
@@ -439,6 +472,7 @@
 				991D4C9E24B10DA000DF0D0C /* Developers.swift in Sources */,
 				991D4CA524B1A37100DF0D0C /* SearchGameView.swift in Sources */,
 				9908EAC224ACDE5B000BA65A /* GamesView.swift in Sources */,
+				995A7AAC24CDDB0E003CD025 /* PersistenceContainer.swift in Sources */,
 				991D4CA024B10E2D00DF0D0C /* Publishers.swift in Sources */,
 				9908EAC524ACDEB9000BA65A /* RawgService.swift in Sources */,
 				991D4C9624B0EB9D00DF0D0C /* DetailGame.swift in Sources */,
@@ -447,11 +481,13 @@
 				9908EAC924ACDFC7000BA65A /* Games.swift in Sources */,
 				9908EA9524ACDD8E000BA65A /* About.swift in Sources */,
 				991D4C9024B05D2C00DF0D0C /* DetailViewModel.swift in Sources */,
+				995A7AAF24CDDB28003CD025 /* GameCatalog.xcdatamodeld in Sources */,
 				99F0404024CAFB3B00D36E47 /* BlurView.swift in Sources */,
 				99C842AF24BC818E008E7566 /* GamesRow.swift in Sources */,
 				9908EAD324ADAC9D000BA65A /* Constants.swift in Sources */,
 				999CCDC224CC7A1E007B8F31 /* Clip.swift in Sources */,
 				99C842AB24BC80E2008E7566 /* ScoreBox.swift in Sources */,
+				995A7AB224CDE0B0003CD025 /* FavoriteView.swift in Sources */,
 				9908EA9324ACDD8E000BA65A /* App.swift in Sources */,
 				999CCDB824CC4FC8007B8F31 /* SectionHeaderView.swift in Sources */,
 				9908EACE24ACE61A000BA65A /* GameViewModel.swift in Sources */,
@@ -795,6 +831,19 @@
 			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		995A7AAD24CDDB28003CD025 /* GameCatalog.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				995A7AAE24CDDB28003CD025 /* GameCatalog.xcdatamodel */,
+			);
+			currentVersion = 995A7AAE24CDDB28003CD025 /* GameCatalog.xcdatamodel */;
+			path = GameCatalog.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9908EA8724ACDD8E000BA65A /* Project object */;
 }
