@@ -11,11 +11,10 @@ import CoreData
 class DetailViewModel: ObservableObject {
     
     let game: Games
-//    let context = PersistentContainer.persistentContainer.viewContext
     @Published var detailGames: DetailGame?
     @Published var screenshots: [Screenshot] = []
     @Published var loading: Bool = false
-    @Published var rating: Int = 0
+    @Published var isFav: Bool = false
     
     init(game: Games) {
         self.game = game
@@ -32,7 +31,6 @@ class DetailViewModel: ObservableObject {
                 if let game = response {
                     DispatchQueue.main.async {
                         self?.detailGames = game
-                        self?.rating = Int(game.rating ?? 0)
                     }
                 }
             }
@@ -58,7 +56,9 @@ class DetailViewModel: ObservableObject {
         
         do {
             try context.save()
+            isFav = true
         } catch {
+            isFav = false
             fatalError("Error Save data")
         }
     }
