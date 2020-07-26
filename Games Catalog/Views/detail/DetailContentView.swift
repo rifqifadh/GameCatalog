@@ -19,15 +19,10 @@ struct DetailContentView: View {
             Text("\(game.name)")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-            HStack(alignment: .center) {
-                Image(systemName: "star.fill")
-                    .foregroundColor(.yellow)
-                Text("\(String(format: "%.1f", game.rating ?? 0))/5")
+                Text("⭐️ \(String(format: "%.1f", game.rating ?? 0))/5")
                     .font(.footnote)
-                    .fontWeight(.light)
-                    .foregroundColor(.yellow)
-            }
-                .padding(.bottom, 20)
+                    .foregroundColor(Color("Text"))
+                    .padding(.bottom, 20)
             Text("Description")
                 .font(.headline)
                 .fontWeight(.semibold)
@@ -62,7 +57,7 @@ extension DetailContentView {
     }
     
     private var detailGame: some View {
-        VStack(alignment: .leading) {
+        Group {
             Text("Genre")
                 .font(.headline)
                 .padding(.bottom, 5)
@@ -72,7 +67,6 @@ extension DetailContentView {
                 .font(.headline)
                 .padding(.bottom, 5)
             Text("\(game.platform)")
-                .lineLimit(2)
             Divider()
             Text("Publisher")
                 .font(.headline)
@@ -85,14 +79,13 @@ extension DetailContentView {
                         .font(.headline)
                         .padding(.bottom, 5)
                     Text("\(game.developer)")
-                        .multilineTextAlignment(.leading)
                         .lineLimit(2)
+                        .frame(minWidth: 0, maxWidth: 180, alignment: .leading)
                         .padding(.bottom)
                     Text("Metacritic")
                         .font(.headline)
                         .padding(.bottom, 5)
                     ScoreBox(color: game.metacriticShape, score: String("\(game.metacritic)"))
-                        .padding(.bottom)
                 }
                 Spacer()
                 Spacer()

@@ -25,18 +25,18 @@ struct DetailGame: Codable {
     let metacritic: Int
     var metacriticShape: Color {
         switch metacritic {
-            case 0..<20:
+            case 0..<30:
                 return Color.red
-            case 21..<40:
+            case 31..<50:
                 return Color.yellow
-            case 41..<60:
+            case 51..<70:
                 return Color.orange
             case 71...90:
                 return Color.green
             case 91...100:
                 return Color.blue
             default:
-                return Color.gray.opacity(0)
+                return Color.red
         }
     }
     var genres: [Genres]?
@@ -70,4 +70,5 @@ struct DetailGame: Codable {
         }
         return "-"
     }
+    let clip: Clip?
 }
