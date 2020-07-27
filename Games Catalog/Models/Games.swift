@@ -13,7 +13,7 @@ struct GamesResponse: Codable {
 }
 
 struct Games: Codable, Identifiable {
-    var id: Int?
+    var id: Int
     let name: String
     let descriptionRaw: String?
     let backgroundImage: String?

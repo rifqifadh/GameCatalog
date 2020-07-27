@@ -17,8 +17,15 @@ struct DetailGameView: View {
     var game: Games {
         detailViewModel.game
     }
+    
+    var fetchRequest: FetchRequest<Favorite>
+    
+    var games: FetchedResults<Favorite> { fetchRequest.wrappedValue }
+    
     init(games: Games) {
         self._detailViewModel = ObservedObject(wrappedValue: DetailViewModel(game: games))
+        self.fetchRequest = FetchRequest<Favorite>(entity: Favorite.entity(), sortDescriptors: [],
+                                                   predicate: NSPredicate(format: "id == \(games.id)"))
     }
     
     var body: some View {
@@ -39,6 +46,14 @@ struct DetailGameView: View {
                                 .indicator(.activity)
                                 .frame(height: 200)
                         }
+                        
+                        Button(action: {
+                            detailViewModel.checkIsFav(games)
+                            debugPrint(games)
+                        }) {
+                            Text("Update Data")
+                        }
+                        
                         DetailContentView(game: detailViewModel.detailGames!)
                             .padding([.top, .leading, .trailing])
                         Divider()
@@ -69,7 +84,13 @@ struct DetailGameView: View {
                         .navigationBarItems(
                             trailing:
                                 Button(action: {
-                                    detailViewModel.saveToFavorite(self.moc)
+                                    if detailViewModel.isFav {
+                                        debugPrint("IS Favorite")
+                                        detailViewModel.deleteFav(from: games, moc)
+                                    } else {
+                                        detailViewModel.saveToFavorite(moc)
+                                    }
+                                    
                                 }) {
                                     Image(systemName: detailViewModel.isFav ? "star.fill" : "star")
                                 }
@@ -82,6 +103,7 @@ struct DetailGameView: View {
             }
             .onAppear {
                 detailViewModel.getDetailMovie()
+                detailViewModel.checkIsFav(games)
             }
         }
     }

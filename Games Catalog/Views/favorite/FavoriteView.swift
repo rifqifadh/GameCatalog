@@ -13,8 +13,22 @@ struct FavoriteView: View {
     
     var body: some View {
         NavigationView {
-            List(games, id: \.self) { game in
-                Text("Hello, \(game.name!)")
+            List {
+                ForEach(games, id: \.self) { game in
+                    Text("Hello, \(game.name!)")
+                }.onDelete(perform: removeGames)
+            }
+        }
+    }
+    
+    func removeGames(at offset: IndexSet) {
+        for index in offset {
+            let game = games[index]
+            moc.delete(game)
+            do {
+                try moc.save()
+            } catch {
+                fatalError("Error Deleting Favorite")
             }
         }
     }

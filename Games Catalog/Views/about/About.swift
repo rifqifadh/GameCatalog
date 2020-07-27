@@ -14,10 +14,10 @@ struct About: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 200, height: 200)
-                .background(Color("Secondary"))
+                .background(Color("BackgroundInactive"))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .stroke(Color("Secondary"), lineWidth: 10)
+                        .stroke(Color("BackgroundInactive"), lineWidth: 10)
                 )
             VStack(alignment: .leading) {
                 List {
