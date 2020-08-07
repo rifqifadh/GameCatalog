@@ -12,6 +12,7 @@ class SearchViewModel: ObservableObject {
     
     @Published var searchText = ""
     @Published var searchGame: [Games] = []
+    @Published var loading: Bool = false
     
     private var searchCancellable: AnyCancellable?
     
@@ -25,10 +26,12 @@ class SearchViewModel: ObservableObject {
     }
     
     func fetchSearch(_ keyword: String = "") {
+        loading = true
         RawgService.fetch(from: .games, params: ["search": "\(keyword)"], response: GamesResponse.self) { (response) in
             if let results = response?.results {
                 DispatchQueue.main.async { [weak self] in
                     self?.searchGame = results
+                    self?.loading = false
                 }
             }
         }

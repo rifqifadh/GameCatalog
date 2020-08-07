@@ -11,49 +11,42 @@ import SwiftUI
 
 class DetailViewModel: ObservableObject {
     
-    let game: Games
+    let id: Int
     @Published var detailGames: DetailGame?
     @Published var screenshots: [Screenshot] = []
     @Published var loading: Bool = false
     @Published var isFav: Bool = false
     
-    init(game: Games) {
-        self.game = game
+    init(id: Int) {
+        self.id = id
     }
-    
-    //    deinit {
-    //        self.detailGames = nil
-    //    }
     
     func getDetailMovie() {
         loading = true
-        //        if let id = game.id {
-        RawgService.fetch(from: .detail(id: game.id), response: DetailGame.self) { [weak self](response) in
+        RawgService.fetch(from: .detail(id: id), response: DetailGame.self) { [weak self](response) in
             if let game = response {
                 DispatchQueue.main.async {
                     self?.detailGames = game
                 }
             }
         }
-        RawgService.fetch(from: .screenshots(id: game.id), response: ScreenshotResponse.self) { [weak self](response) in
+        RawgService.fetch(from: .screenshots(id: id), response: ScreenshotResponse.self) { [weak self](response) in
             if let response = response {
                 DispatchQueue.main.async {
                     self?.screenshots = response.results
                 }
             }
         }
-        //        } else {
-        //            self.detailGames = nil
-        //        }
         loading = false
     }
-    
+     
     func saveToFavorite(_ context: NSManagedObjectContext) {
         let fav = Favorite(context: context)
-        fav.id = Int32(game.id)
-        fav.name = game.name
-        fav.genre = game.genre
-        fav.backgroundImage = game.backgroundImage
+        fav.id = Int32(detailGames?.id ?? 0)
+        fav.name = detailGames?.name
+        fav.genre = detailGames?.genre
+        fav.backgroundImage = detailGames?.backgroundImage
+        fav.rating = detailGames?.rating ?? 0
         
         do {
             try context.save()

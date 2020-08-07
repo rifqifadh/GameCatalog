@@ -10,10 +10,10 @@ import SDWebImageSwiftUI
 
 struct GamesRow: View {
     
-    var games: Games
+    let games: Games
     
     var body: some View {
-        VStack() {
+        VStack {
             ZStack(alignment: .bottomLeading) {
                 WebImage(url: URL(string: games.backgroundImage!))
                     .resizable()
@@ -49,6 +49,7 @@ struct GamesRow: View {
                 }
             }
         }
+        
     }
 }
 

@@ -25,6 +25,7 @@ struct Games: Codable, Identifiable {
         }
         return "-"
     }
+    let rating: Double?
     
     var metacriticShape: Color {
         guard let metacritic = metacritic else {
@@ -58,7 +59,7 @@ let static_games = Games(id: 3498,
                          descriptionRaw: "Rockstar Games went bigger, since their previous installment of the series. You get the complicated and realistic world-building from Liberty City of GTA4 in the setting of lively and diverse Los Santos, from an old fan favorite GTA San Andreas. 561 different vehicles (including every transport you can operate) and the amount is rising with every update.",
                          backgroundImage: "https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg",
                          metacritic: 97,
-                         genres: [static_genres])
+                         genres: [static_genres], rating: 5.0)
 
 
 let static_genres = Genres(name: "Advanture")

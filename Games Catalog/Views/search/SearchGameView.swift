@@ -14,28 +14,34 @@ struct SearchGameView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List() {
+                List {
                     Section(header: SearchField(searchText: $viewModel.searchText, placeholder: "Search a Game")) {
-                        if viewModel.searchText.isEmpty {
-                            ForEach(viewModel.searchGame) { game in
-                                NavigationLink(destination: DetailGameView(games: game)) {
-                                    Text("\(game.name)")
-                                }
-                            }
-                            .listRowBackground(Color("PrimaryVariant"))
+                        if viewModel.loading {
+                            ProgressViewCustom()
+                                .listRowBackground(Color("Background"))
+                                .frame(minHeight: 0, maxHeight: .infinity)
                         } else {
-                            ForEach(viewModel.searchGame) { game in
-                                NavigationLink(destination: DetailGameView(games: game)) {
-                                    Text("\(game.name)")
+                            if viewModel.searchText.isEmpty {
+                                ForEach(viewModel.searchGame) { game in
+                                    NavigationLink(destination: DetailGameView(id: game.id)) {
+                                        Text("\(game.name)")
+                                    }
                                 }
+                                .listRowBackground(Color("Background"))
+                            } else {
+                                ForEach(viewModel.searchGame) { game in
+                                    NavigationLink(destination: DetailGameView(id: game.id)) {
+                                        Text("\(game.name)")
+                                    }
+                                }
+                                .listRowBackground(Color("Background"))
                             }
-                            .listRowBackground(Color("PrimaryVariant"))
                         }
                     }
                 }
-                .listStyle(InsetGroupedListStyle())
-                .navigationBarTitle(Text("Search"))
             }
+            .listStyle(InsetGroupedListStyle())
+            .navigationBarTitle(Text("Search"))
         }
     }
 }

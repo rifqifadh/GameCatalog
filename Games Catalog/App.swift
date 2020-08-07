@@ -25,18 +25,19 @@ struct GamesCatalogApp: App {
                 FavoriteView()
                     .environment(\.managedObjectContext, context)
                     .tabItem {
-                        Image(systemName: "gamecontroller")
-                        Text("Games")
+                        Image(systemName: "heart")
+                        Text("Favorites")
                     }.tag(1)
                 SearchGameView()
+                    .environment(\.managedObjectContext, context)
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                         Text("Search")
                     }.tag(2)
                 About()
                     .tabItem {
-                        Image(systemName: "info.circle")
-                        Text("About")
+                        Image(systemName: "person.circle")
+                        Text("Profile")
                     }
             }
             .onAppear(perform: setupAppearance)
@@ -62,7 +63,7 @@ struct GamesCatalogApp: App {
         UITableView.appearance().backgroundColor = UIColor(named: "Background")
         UITableViewCell.appearance().backgroundColor = UIColor(named: "Background")
 //
-        UIScrollView.appearance().backgroundColor = UIColor(named: "Background")
+//        UIScrollView.appearance().backgroundColor = UIColor(named: "Background")
 //
         UITabBar.appearance().isTranslucent = true
 //        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "Text")

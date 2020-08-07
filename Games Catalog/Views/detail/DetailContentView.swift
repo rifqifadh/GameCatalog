@@ -100,9 +100,3 @@ extension DetailContentView {
         }
     }
 }
-
-//struct DetailContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailContentView(game: static_games)
-//    }
-//}

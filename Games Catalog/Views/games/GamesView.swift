@@ -6,21 +6,16 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct GamesView: View {
     
     @ObservedObject var viewModel = GameViewModel()
     
-    let columns = [
-        GridItem(.flexible())
-    ]
-    
     var body: some View {
         VStack {
             if viewModel.loading {
-                VStack() {
-                    ProgressViewCustom()
-                }
+                ProgressViewCustom()
             } else {
                 NavigationView {
                     List {
@@ -28,16 +23,23 @@ struct GamesView: View {
                             ZStack(alignment: .center) {
                                 GamesRow(games: item)
                                     .cornerRadius(10)
-                                NavigationLink(destination: DetailGameView(games: item)) {
+                                NavigationLink(destination: DetailGameView(id: item.id)) {
                                     EmptyView()
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
                         }
+                        .padding(.bottom, 10)
                         .listRowBackground(Color("Background"))
-                        .padding(.vertical, 10)
                     }
-                    .navigationBarTitle(Text("Games Catalogue"))
+                    .listStyle(GroupedListStyle())
+                    .navigationBarTitle(Text("Games Catalogue"), displayMode: .automatic)
+                    .navigationBarItems(trailing:
+                                            Group {
+                                                HStack(spacing: 12) {
+                                                    Image(systemName: "heart")
+                                                }
+                                            })
                 }
             }
         }
