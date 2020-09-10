@@ -10,67 +10,99 @@ import CoreData
 import SwiftUI
 
 class DetailViewModel: ObservableObject {
-    
-    let id: Int
-    @Published var detailGames: DetailGame?
-    @Published var screenshots: [Screenshot] = []
-    @Published var loading: Bool = false
-    @Published var isFav: Bool = false
-    
-    init(id: Int) {
-        self.id = id
-    }
-    
-    func getDetailMovie() {
-        loading = true
-        RawgService.fetch(from: .detail(id: id), response: DetailGame.self) { [weak self](response) in
-            if let game = response {
-                DispatchQueue.main.async {
-                    self?.detailGames = game
-                }
-            }
-        }
-        RawgService.fetch(from: .screenshots(id: id), response: ScreenshotResponse.self) { [weak self](response) in
-            if let response = response {
-                DispatchQueue.main.async {
-                    self?.screenshots = response.results
-                }
-            }
-        }
-        loading = false
-    }
-     
-    func saveToFavorite(_ context: NSManagedObjectContext) {
-        let fav = Favorite(context: context)
-        fav.id = Int32(detailGames?.id ?? 0)
-        fav.name = detailGames?.name
-        fav.genre = detailGames?.genre
-        fav.backgroundImage = detailGames?.backgroundImage
-        fav.rating = detailGames?.rating ?? 0
-        
-        do {
-            try context.save()
-            isFav = true
-        } catch {
-            fatalError("Error Save data")
-        }
-    }
-    
-    func checkIsFav(_ entity: FetchedResults<Favorite>) {
-        if entity.count > 0 {
-            isFav = true
-        } else {
-            isFav = false
-        }
-    }
-    
-    func deleteFav(from entity: FetchedResults<Favorite>,_ context: NSManagedObjectContext) {
-        context.delete(entity[0])
-        isFav = false
-        do {
-            try context.save()
-        } catch {
-            fatalError("Error Delete Favorite")
-        }
-    }
+	@Published var detailGames: DetailGame?
+	@Published var screenshots: [Screenshot] = []
+	@Published var isFav: Bool = false
+	@Published var loadingState = LoadingState.loading
+	
+	enum LoadingState {
+		case loading, loaded, failed
+	}
+	
+	let id: Int
+	
+	init(id: Int) {
+		self.id = id
+	}
+	
+	func getDetailMovie() {
+		loadingState = .loading
+		RawgService.fetch(from: .detail(id: id), response: DetailGame.self) { result in
+			DispatchQueue.main.async {
+				switch result {
+				case .success(let response):
+					self.detailGames = response
+					self.loadingState = .loaded
+				case .failure(let error):
+					switch error {
+					case .badURL:
+						print("Bad URL")
+						self.loadingState = .failed
+					case .requestFailed:
+						print("Network problems")
+						self.loadingState = .failed
+					case .unknown:
+						print("Unknown error")
+						self.loadingState = .failed
+					}
+				}
+			}
+		}
+		
+		RawgService.fetch(from: .screenshots(id: id), response: ScreenshotResponse.self) { result in
+			
+			DispatchQueue.main.async {
+				switch result {
+				case .success(let response):
+					self.screenshots = response.results					
+				case .failure(let error):
+					switch error {
+					case .badURL:
+						print("Bad URL")
+						self.loadingState = .failed
+					case .requestFailed:
+						print("Network problems")
+						self.loadingState = .failed
+					case .unknown:
+						print("Unknown error")
+						self.loadingState = .failed
+					}
+				}
+			}
+		}
+	}
+	
+	func saveToFavorite(_ context: NSManagedObjectContext) {
+		let fav = Favorite(context: context)
+		fav.id = Int32(detailGames?.id ?? 0)
+		fav.name = detailGames?.name
+		fav.genre = detailGames?.genre
+		fav.backgroundImage = detailGames?.backgroundImage
+		fav.rating = Int16(detailGames!.ratingRoundFormat)
+		
+		do {
+			try context.save()
+			isFav = true
+		} catch {
+			fatalError("Error Save data")
+		}
+	}
+	
+	func checkIsFav(_ entity: FetchedResults<Favorite>) {
+		if entity.count > 0 {
+			isFav = true
+		} else {
+			isFav = false
+		}
+	}
+	
+	func deleteFav(from entity: FetchedResults<Favorite>,_ context: NSManagedObjectContext) {
+		context.delete(entity[0])
+		isFav = false
+		do {
+			try context.save()
+		} catch {
+			fatalError("Error Delete Favorite")
+		}
+	}
 }

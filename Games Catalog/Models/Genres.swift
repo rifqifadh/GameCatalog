@@ -9,4 +9,6 @@ import Foundation
 
 struct Genres: Codable {
     let name: String
+	
+	static let genre = Genres(name: "Action")
 }

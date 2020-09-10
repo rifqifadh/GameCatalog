@@ -16,7 +16,6 @@ struct ProgressViewCustom: View {
                 .foregroundColor(.blue)
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-        .background(Color("Background"))
     }
 }
 
