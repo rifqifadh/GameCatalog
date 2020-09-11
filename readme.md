@@ -11,6 +11,6 @@ Game Catalog MovieSwiftUI is an application that uses the [Rawg API](https://api
 * [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
 
 ## Screenshot
-<img src="/Screenshot/img1.PNG" width="125" height="230"> <img src="/Screenshot/img2.PNG" width="125" height="230">
-<img src="/Screenshot/img3.PNG" width="125" height="230"> <img src="/Screenshot/img4.PNG" width="125" height="230">
-<img src="/Screenshot/img5.PNG" width="125" height="230"> 
+<img src="/Screenshot/img1.PNG" width="195" height="300"> <img src="/Screenshot/img2.PNG" width="195" height="300">
+<img src="/Screenshot/img3.PNG" width="195" height="300"> <img src="/Screenshot/img4.PNG" width="195" height="300">
+<img src="/Screenshot/img5.PNG" width="195" height="300"> 
