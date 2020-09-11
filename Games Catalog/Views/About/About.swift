@@ -23,7 +23,6 @@ struct About: View {
 	@State private var profileImage: Image?
 	@State private var activeSheet = ActiveSheet.editProfile
 
-	
    private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
       geometry.frame(in: .global).minY
    }

@@ -25,8 +25,8 @@ struct FavoriteView: View {
 					}
 					.onDelete(perform: removeGames)
 					.padding(.vertical, 10)
-					.navigationBarTitle(Text("Favorites"))
 				}
+				.navigationBarTitle(Text("Favorites"))
 			}
 		}
 	}

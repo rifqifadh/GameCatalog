@@ -36,7 +36,7 @@ struct GamesView: View {
 			.navigationBarTitle(Text("Games Catalog"))
 			.navigationBarItems(trailing: Button(action: {
 				self.showFilter = true
-			}){
+			}) {
 				Text(filterBy.rawValue)
 					.frame(alignment: .trailing)
 				Image(systemName: "arrow.up.arrow.down.circle")

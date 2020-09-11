@@ -65,13 +65,17 @@ struct Game: Codable, Identifiable {
 			return Color.gray.opacity(0)
 		}
 	}
-	
-	
 	struct Clip: Codable {
 		let clip: String
 		let preview: String
 	}
 	
-	static let game = Game(id: 12, name: "Grand Theft Auto V", descriptionRaw: "Desc", backgroundImage: "https://media.rawg.io/media/games/84d/84da2ac3fdfc6507807a1808595afb12.jpg", metacritic: 80, released: "2017-09-09", genres: [Genres.genre], rating: 5.0)
-	
+	static let game = Game(id: 12,
+								  name: "Grand Theft Auto V",
+								  descriptionRaw: "Desc",
+								  backgroundImage: "",
+								  metacritic: 80,
+								  released: "2017-09-09",
+								  genres: [Genres.genre],
+								  rating: 5.0)
 }

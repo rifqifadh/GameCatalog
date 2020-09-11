@@ -17,7 +17,7 @@
 		9908EAC924ACDFC7000BA65A /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908EAC824ACDFC7000BA65A /* Game.swift */; };
 		9908EACE24ACE61A000BA65A /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908EACD24ACE61A000BA65A /* GameViewModel.swift */; };
 		9908EAD324ADAC9D000BA65A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9908EAD224ADAC9D000BA65A /* Constants.swift */; };
-		9908EADB24ADD257000BA65A /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9908EADA24ADD257000BA65A /* SDWebImageSwiftUI */; };
+		9908EADB24ADD257000BA65A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 9908EADA24ADD257000BA65A /* SwiftPackageProductDependency */; };
 		991D4C9024B05D2C00DF0D0C /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D4C8F24B05D2C00DF0D0C /* DetailViewModel.swift */; };
 		991D4C9424B06F4100DF0D0C /* DetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D4C9324B06F4100DF0D0C /* DetailContentView.swift */; };
 		991D4C9624B0EB9D00DF0D0C /* DetailGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D4C9524B0EB9D00DF0D0C /* DetailGame.swift */; };
@@ -123,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9908EADB24ADD257000BA65A /* SDWebImageSwiftUI in Frameworks */,
+				9908EADB24ADD257000BA65A /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +151,7 @@
 				9908EAA324ACDD91000BA65A /* Games CatalogTests */,
 				9908EAAE24ACDD91000BA65A /* Games CatalogUITests */,
 				9908EA9024ACDD8E000BA65A /* Products */,
+				F1FEDA61CC6EBF728BF1CC4A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -357,6 +358,13 @@
 			path = UIRepresentable;
 			sourceTree = "<group>";
 		};
+		F1FEDA61CC6EBF728BF1CC4A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -367,6 +375,7 @@
 				9908EA8B24ACDD8E000BA65A /* Sources */,
 				9908EA8C24ACDD8E000BA65A /* Frameworks */,
 				9908EA8D24ACDD8E000BA65A /* Resources */,
+				99287A94250A157B0035E82D /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -374,7 +383,7 @@
 			);
 			name = "Games Catalog";
 			packageProductDependencies = (
-				9908EADA24ADD257000BA65A /* SDWebImageSwiftUI */,
+				9908EADA24ADD257000BA65A /* SwiftPackageProductDependency */,
 			);
 			productName = "Games Catalog";
 			productReference = 9908EA8F24ACDD8E000BA65A /* Games Catalog.app */;
@@ -448,7 +457,7 @@
 			);
 			mainGroup = 9908EA8624ACDD8E000BA65A;
 			packageReferences = (
-				9908EAD924ADD257000BA65A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				9908EAD924ADD257000BA65A /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 9908EA9024ACDD8E000BA65A /* Products */;
 			projectDirPath = "";
@@ -487,6 +496,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		99287A94250A157B0035E82D /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9908EA8B24ACDD8E000BA65A /* Sources */ = {
@@ -850,7 +880,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9908EAD924ADD257000BA65A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+		9908EAD924ADD257000BA65A /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
@@ -861,9 +891,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9908EADA24ADD257000BA65A /* SDWebImageSwiftUI */ = {
+		9908EADA24ADD257000BA65A /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9908EAD924ADD257000BA65A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			package = 9908EAD924ADD257000BA65A /* RemoteSwiftPackageReference */;
 			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */

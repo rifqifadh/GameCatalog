@@ -41,7 +41,7 @@ struct SearchGameView: View {
 							}
 						}
 					}
-					.listRowBackground(Color("Background"))
+					.listRowBackground(Color("CardBackground"))
 				}
 			}
 			.listStyle(InsetGroupedListStyle())

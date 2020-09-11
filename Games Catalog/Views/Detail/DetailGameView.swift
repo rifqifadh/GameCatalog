@@ -15,7 +15,6 @@ struct DetailGameView: View {
 	@ObservedObject private var detailViewModel: DetailViewModel
 	@State private var showConfirmation = false
 	
-	
 	var fetchRequest: FetchRequest<Favorite>
 	
 	var games: FetchedResults<Favorite> { fetchRequest.wrappedValue }
@@ -54,8 +53,8 @@ struct DetailGameView: View {
 						ScrollView(.horizontal, showsIndicators: false) {
 							HStack {
 								if let screenshot = detailViewModel.screenshots {
-									ForEach(screenshot) { i in
-										WebImage(url: URL(string: i.image))
+									ForEach(screenshot) { value in
+										WebImage(url: URL(string: value.image))
 											.resizable()
 											.placeholder {
 												Rectangle().foregroundColor(.gray)}
@@ -95,9 +94,8 @@ struct DetailGameView: View {
 			detailViewModel.checkIsFav(games)
 		}
 		.alert(isPresented: $showConfirmation) {
-			Alert(title: Text("Are you sure want to delete \(detailViewModel.detailGames?.name ?? "this game") from favorite?"), primaryButton: .cancel(Text("Cancel")), secondaryButton: .destructive(Text("Delete"), action: { detailViewModel.deleteFav(from: games, moc)}))
+			Alert(title: Text("Are you sure want to delete \(detailViewModel.detailGames?.name ?? "this game") from favorite?"), primaryButton: .cancel(Text("Cancel")), secondaryButton: .destructive(Text("Delete"), action: { detailViewModel.deleteFav(from: games, context: moc)}))
 		}
 		.background(Color("Background"))
 	}
 }
-

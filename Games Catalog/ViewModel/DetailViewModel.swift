@@ -79,6 +79,7 @@ class DetailViewModel: ObservableObject {
 		fav.genre = detailGames?.genre
 		fav.backgroundImage = detailGames?.backgroundImage
 		fav.rating = Int16(detailGames!.ratingRoundFormat)
+		fav.releaseDate = detailGames?.releaseDate
 		
 		do {
 			try context.save()
@@ -89,14 +90,14 @@ class DetailViewModel: ObservableObject {
 	}
 	
 	func checkIsFav(_ entity: FetchedResults<Favorite>) {
-		if entity.count > 0 {
+		if !entity.isEmpty {
 			isFav = true
 		} else {
 			isFav = false
 		}
 	}
 	
-	func deleteFav(from entity: FetchedResults<Favorite>,_ context: NSManagedObjectContext) {
+	func deleteFav(from entity: FetchedResults<Favorite>, context: NSManagedObjectContext) {
 		context.delete(entity[0])
 		isFav = false
 		do {

@@ -93,7 +93,7 @@ extension DetailContentView {
 						.padding(.bottom, 5)
 					if let metacritic = game.metacritic {
 						ScoreBox(color: game.metacriticShape, score: String("\(metacritic)"))
-					} else  {
+					} else {
 						ScoreBox(color: game.metacriticShape, score: String("0"))
 					}
 				}

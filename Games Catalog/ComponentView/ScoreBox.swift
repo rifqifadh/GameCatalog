@@ -30,7 +30,7 @@ struct ScoreBox: View {
 
 struct ScoreBox_Previews: PreviewProvider {
 	static var previews: some View {
-		ScoreBox(color: .blue,score: String("80"))
+		ScoreBox(color: .blue, score: String("80"))
 			.previewLayout(.sizeThatFits)
 		
 	}

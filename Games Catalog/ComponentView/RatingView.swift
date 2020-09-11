@@ -24,8 +24,7 @@ struct RatingView: View {
 	func image(for number: Int) -> Image {
 		if number > rating {
 			return offImage ?? onImage
-		}
-		else {
+		} else {
 			return onImage
 		}
 	}

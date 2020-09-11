@@ -17,7 +17,7 @@ class PersistentContainer {
     
     public static var persistentContainer: NSPersistentContainer = {
        let container = NSPersistentContainer(name: "GameCatalog")
-        container.loadPersistentStores { (storeDescription, error) in
+        container.loadPersistentStores { storeDescription, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
