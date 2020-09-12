@@ -4,7 +4,7 @@ Game Catalog have been created with latest SwiftUI features, so you'll need a be
 
 # Game Catalog
 
-Game Catalog MovieSwiftUI is an application that uses the [Rawg API](https://api.rawg.io/docs/) and is built with SwiftUI & Support Dark Mode.
+Game Catalog is an application that uses the [Rawg API](https://api.rawg.io/docs/) and is built with SwiftUI & Support Dark Mode.
 
 ## Architecture
 
