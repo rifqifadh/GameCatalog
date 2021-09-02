@@ -1,4 +1,4 @@
-### Requirment
+### Requirement
 - Xcode 12
 
 # Game Catalog
