@@ -1,6 +1,5 @@
-# Important
-
-Game Catalog have been created with latest SwiftUI features, so you'll need a beta version of Xcode 12 in order to build & run it.
+### Requirment
+- Xcode 12
 
 # Game Catalog
 
